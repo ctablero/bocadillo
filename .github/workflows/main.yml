@@ -8,7 +8,7 @@ jobs:
       uses: actions/checkout@v4
     - id: test_migrations
       name: Test db migrations
-      uses: ctablero/catalina@v1
+      uses: ctablero/catalina@v1.0.0
       with:
         engine: mysql
         db-url: 'localhost'
