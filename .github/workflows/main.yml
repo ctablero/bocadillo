@@ -6,12 +6,21 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v4
+    - name: Show the workspace path
+      shell: bash
+      run: |
+        echo "Value of the GITHUB_WORKSPACE variable from the invoking workflow"      
+        echo "$GITHUB_WORKSPACE"
     - id: test_migrations
       name: Test db migrations
-      uses: ctablero/catalina@v1.0.0
+      uses: ctablero/catalina@vtest-workspace
       with:
-        engine: mysql
-        db-url: 'localhost'
-        db-user: 'admin'
+        db-host-port: '3306'
+        db-image-name: 'mysql'
+        db-image-tag: 'latest'
+        db-internal-port: '3306'
         db-password: '123456'
-        db-port: '3306'
+        db-user: 'root'
+        knex-image-name: 'knex'
+        knex-image-tag: 'latest'
+        rdbms: 'mysql'
